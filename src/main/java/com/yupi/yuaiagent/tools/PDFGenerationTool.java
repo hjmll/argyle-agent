@@ -12,6 +12,7 @@ import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * PDF 生成工具
@@ -32,12 +33,13 @@ public class PDFGenerationTool {
                  PdfDocument pdf = new PdfDocument(writer);
                  Document document = new Document(pdf)) {
                 // 自定义字体（需要人工下载字体文件到特定目录）
-//                String fontPath = Paths.get("src/main/resources/static/fonts/simsun.ttf")
-//                        .toAbsolutePath().toString();
-//                PdfFont font = PdfFontFactory.createFont(fontPath,
-//                        PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+                String fontPath = Paths.get("C:/Windows/Fonts/simsun.ttc,0")
+                        .toAbsolutePath().toString();
+                PdfFont font = PdfFontFactory.createFont(fontPath,
+                        PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
                 // 使用内置中文字体
-                PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H");
+                //PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H");
+                //PdfFont font = PdfFontFactory.createFont("C:/Windows/Fonts/simsun.ttc,0", "Identity-H", true);
                 document.setFont(font);
                 // 创建段落
                 Paragraph paragraph = new Paragraph(content);
